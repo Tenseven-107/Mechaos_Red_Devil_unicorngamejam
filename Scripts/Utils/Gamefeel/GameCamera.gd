@@ -2,17 +2,15 @@ extends Camera2D
 class_name GameCamera
 
 
-onready var shake_timer = $Timer
-onready var shake_tween = $Shake_tween
-onready var zoom_tween = $Zoom_tween
-onready var zoom_timer = $Timer2
-onready var hitstop_tween = $Hitstop_tween
-onready var hitstop_timer = $Timer3
+onready var shake_timer = $CamShake/Shake_timer
+onready var shake_tween = $CamShake/Shake_tween
+onready var zoom_tween = $Zoom/Zoom_tween
+onready var zoom_timer = $Zoom/Zoom_timer
+onready var hitstop_tween = $Hitstop/Hitstop_tween
+onready var hitstop_timer = $Hitstop/Hitstop_timer
 
 export (bool) var snappy_camera: bool = false
 
-export (Vector2) var grid_size: Vector2 = Vector2(224, 224)
-var grid_pos: Vector2
 var player_target: Node = null
 
 var shake_amount: float = 0
@@ -22,22 +20,30 @@ var normal_zoom = zoom
 
 var shaking: bool = false
 
+export (NodePath) var target_path: NodePath
+onready var target = get_node(target_path)
+
 
 # Set up
 func _ready():
 	shaking = false
 	set_as_toplevel(true)
-	update_cam(Vector2.ZERO)
 
 	GlobalSignals.connect("camera_shake", self, "shake")
 	GlobalSignals.connect("camera_zoom", self, "zoom_cam")
 	GlobalSignals.connect("hitstop", self, "time_stop")
+	GlobalSignals.connect("set_camera", self, "set_target")
+
+
+func set_target(new_target: Node2D):
+	target = new_target
+
 
 
 # Process
 func _process(delta):
 	var fps = Engine.get_frames_per_second()
-	if fps < 60:
+	if fps <= 30:
 		smoothing_enabled = false
 	else:
 		smoothing_enabled = true
@@ -55,25 +61,9 @@ func _process(delta):
 		offset = normal_offset - Vector2(rand_range(-shake_amount, shake_amount),
 		rand_range(shake_amount, -shake_amount)) * delta
 
-
-# Room view
-func update_cam(pos):
-	var x = round(pos.x / grid_size.x)
-	var y = round(pos.y / grid_size.y)
-	var new_grid_pos = Vector2(x, y)
-
-	if grid_pos == new_grid_pos:
-		return
-
-	grid_pos = new_grid_pos
-	position = grid_pos * grid_size
-
-
-func _on_CameraArea_body_exited(body: Node):
-	if is_instance_valid(player_target):
-		if body == player_target:
-			update_cam(body.global_position)
-
+func _physics_process(delta):
+	if is_instance_valid(target):
+		global_position = target.global_position
 
 
 # Camera shake

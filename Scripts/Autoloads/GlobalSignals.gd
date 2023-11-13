@@ -3,11 +3,7 @@ extends Node
 
 # Initialization
 signal initialize_hud(hud)
-
-
-# Gameplay
-signal heal_player(hp)
-
+signal set_camera(target)
 
 # Camera fx
 signal camera_shake(new_shake, shake_time, shake_limit)

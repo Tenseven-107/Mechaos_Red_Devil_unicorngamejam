@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Tools/MechSetup.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Mechs/Heads/HeadDefault.tres" type="Resource" id=2]
+[ext_resource path="res://Resources/Mechs/Torsos/TorsoDefault.tres" type="Resource" id=3]
+[ext_resource path="res://Resources/Mechs/Arms/ArmDefault.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+_c_arms = ""
+arm_left = ExtResource( 4 )
+arm_right = ExtResource( 4 )
+_c_torso = ""
+torso = ExtResource( 3 )
+_c_head = ""
+head = ExtResource( 2 )

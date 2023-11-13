@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/Player/Gameplay/PlayerController.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Utils/Backend/MechInitializer.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Mechs/Torsos/Handling-torso.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Mechs/Arms/Laser-arm.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Mechs/Heads/Shield-head.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Mechs/Arms/MachineGun-arm.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Utils/Gameplay/MechEntity.gd" type="Script" id=7]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player/Gameplay/PlayerWeaponController.gd" type="Script" id=10]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.08276
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.588235 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.0
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="CameraEffect" parent="Effects" instance=ExtResource( 8 )]
+
+[node name="MechInitializer" type="Node" parent="."]
+script = ExtResource( 2 )
+controller_path = NodePath("..")
+entity_path = NodePath("../Entity")
+torso_path = NodePath("../Body/Torso")
+head_path = NodePath("../Body/Head")
+arm_left_path = NodePath("../Body/Arms/ArmLeft")
+arm_right_path = NodePath("../Body/Arms/ArmRight")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Torso" type="Node2D" parent="Body"]
+
+[node name="Sprite" type="Sprite" parent="Body/Torso"]
+texture = ExtResource( 3 )
+
+[node name="SpriteTrail" type="Node2D" parent="Body/Torso/Sprite"]
+show_behind_parent = true
+script = ExtResource( 9 )
+active = true
+life_time = 0.1
+copy_period = 0.05
+gradient = SubResource( 3 )
+
+[node name="Head" type="Node2D" parent="Body"]
+
+[node name="Sprite" type="Sprite" parent="Body/Head"]
+texture = ExtResource( 5 )
+
+[node name="SpriteTrail" type="Node2D" parent="Body/Head/Sprite"]
+show_behind_parent = true
+script = ExtResource( 9 )
+active = true
+life_time = 0.1
+copy_period = 0.05
+gradient = SubResource( 3 )
+
+[node name="Abilities" type="Node" parent="Body/Head"]
+
+[node name="Arms" type="Node2D" parent="Body"]
+
+[node name="ArmLeft" type="Node2D" parent="Body/Arms"]
+script = ExtResource( 10 )
+weapon_control = "attack_left"
+
+[node name="Sprite" type="Sprite" parent="Body/Arms/ArmLeft"]
+texture = ExtResource( 6 )
+
+[node name="SpriteTrail" type="Node2D" parent="Body/Arms/ArmLeft/Sprite"]
+show_behind_parent = true
+script = ExtResource( 9 )
+active = true
+life_time = 0.1
+copy_period = 0.05
+gradient = SubResource( 3 )
+
+[node name="Weapon" type="Node2D" parent="Body/Arms/ArmLeft"]
+position = Vector2( 0, -5 )
+
+[node name="ArmRight" type="Node2D" parent="Body/Arms"]
+script = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="Body/Arms/ArmRight"]
+texture = ExtResource( 4 )
+flip_v = true
+
+[node name="SpriteTrail" type="Node2D" parent="Body/Arms/ArmRight/Sprite"]
+show_behind_parent = true
+script = ExtResource( 9 )
+active = true
+life_time = 0.1
+copy_period = 0.05
+gradient = SubResource( 3 )
+
+[node name="Weapon" type="Node2D" parent="Body/Arms/ArmRight"]
+position = Vector2( 0, 5 )
+
+[node name="Entity" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
+shape = SubResource( 2 )

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Weapons/BulletShooter.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Weapons/Projectiles/Bullet_gun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=3]
+
+[node name="BulletShooter" type="Node2D"]
+script = ExtResource( 1 )
+projectile = ExtResource( 2 )
+firerate_cooldown = 0.5
+muzzle_path = NodePath("Muzzle")
+effects_on_fire = [ NodePath("Effects/CameraEffect") ]
+
+[node name="Muzzle" type="Position2D" parent="."]
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="CameraEffect" parent="Effects" instance=ExtResource( 3 )]
+new_cam_shake = 25
+cam_shake_time = 0.02
