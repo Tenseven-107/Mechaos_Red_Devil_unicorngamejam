@@ -42,12 +42,6 @@ func set_target(new_target: Node2D):
 
 # Process
 func _process(delta):
-	var fps = Engine.get_frames_per_second()
-	if fps <= 30:
-		smoothing_enabled = false
-	else:
-		smoothing_enabled = true
-
 	if snappy_camera:
 		var x = global_position.x
 		var y = global_position.y

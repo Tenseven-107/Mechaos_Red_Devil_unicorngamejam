@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Tools/MechSetup.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Mechs/Heads/Shield_Head.tres" type="Resource" id=2]
 [ext_resource path="res://Resources/Mechs/Torsos/Balanced_Torso.tres" type="Resource" id=3]
-[ext_resource path="res://Resources/Mechs/Arms/Naked_Arm.tres" type="Resource" id=4]
+[ext_resource path="res://Resources/Mechs/Arms/Fist_Arm.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )

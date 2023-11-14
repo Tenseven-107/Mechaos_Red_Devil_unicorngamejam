@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/Utils/Backend/GameCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Utils/Backend/BulletContainer.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Prefabs/Environment/Shaders/PostProcessingLayer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Prefabs/Environment/Tilemaps/Buildings.tres" type="TileSet" id=10]
 [ext_resource path="res://Prefabs/Environment/Shaders/Water.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Utils/Gameplay/LapManager.gd" type="Script" id=12]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 2520, -386, 2619, -386, 2618, -126, 2519, -126 )
@@ -28,6 +29,7 @@ script = ExtResource( 5 )
 [node name="PostProcessingLayer" parent="." instance=ExtResource( 9 )]
 
 [node name="LapManager" type="Node" parent="."]
+script = ExtResource( 12 )
 
 [node name="GameCamera" parent="." instance=ExtResource( 1 )]
 current = true
@@ -49,7 +51,7 @@ script = ExtResource( 2 )
 [node name="Road" type="Line2D" parent="Environment"]
 z_index = -2
 points = PoolVector2Array( 0, 0, 800, 0, 1079, 0, 1252, 200, 1306, 450, 1262, 671, 1016, 909, 1081, 1304, 1402, 1571, 1874, 1622, 2149, 1411, 2451, 1382, 2641, 1160, 2580, 722, 2569, 0, 2569, -703, 2404, -986, 2081, -1072, 1827, -981, 1680, -789, 1432, -399, 1165, -215, 808, -201, 501, -212, 253, -503, -398, -676, -1059, -392, -1097, 79, -1012, 723, -1033, 1990, -796, 2215, -389, 2185, -152, 1998, -16, 1681, -25, 1269, -321, 672, -521, 324, -546, 79, -484, -69, -247, -21, -90, 0, 0, 0 )
-width = 100.0
+width = 125.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 7 )
 texture_mode = 1
@@ -112,3 +114,5 @@ polygon = PoolVector2Array( 2176, -489, 2519, -489, 2519, -233, 2176, -233 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Colliders/StaticBody2D4"]
 position = Vector2( 0, 105 )
 polygon = PoolVector2Array( 2619, -233, 2752, -233, 2752, -489, 2619, -489 )
+
+[node name="Checkpoints" type="Node2D" parent="Environment"]

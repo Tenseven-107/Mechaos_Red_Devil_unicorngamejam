@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player/Gameplay/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Utils/Backend/MechInitializer.gd" type="Script" id=2]
@@ -11,9 +11,15 @@
 [ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player/Gameplay/PlayerWeaponController.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Player/Gameplay/PlayerAbility.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Effects/Trail.gd" type="Script" id=12]
+[ext_resource path="res://Sprites/Effects/Thruster-Trail.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Mechs/Full/Berserker.tres" type="Resource" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.08276
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.963636 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.588235 )
@@ -39,8 +45,19 @@ torso_path = NodePath("../Body/Torso")
 head_path = NodePath("../Body/Head")
 arm_left_path = NodePath("../Body/Arms/ArmLeft")
 arm_right_path = NodePath("../Body/Arms/ArmRight")
+setup = ExtResource( 14 )
+load_from_memory = true
 
 [node name="Body" type="Node2D" parent="."]
+
+[node name="Trail" type="Line2D" parent="Body"]
+width_curve = SubResource( 4 )
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 13 )
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 1
+script = ExtResource( 12 )
 
 [node name="Torso" type="Node2D" parent="Body"]
 

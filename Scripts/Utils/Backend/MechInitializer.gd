@@ -27,15 +27,27 @@ onready var arm_right = get_node(arm_right_path)
 export var _c_mech_setup: String
 export (Resource) var setup: Resource = preload("res://Resources/Mechs/Full/Default.tres")
 
-onready var torso_setup: Resource = setup.torso
-onready var head_setup: Resource = setup.head
-onready var arm_left_setup: Resource = setup.arm_left
-onready var arm_right_setup: Resource = setup.arm_right
+var torso_setup: MechTorso
+var head_setup: MechHead
+var arm_left_setup: MechArm
+var arm_right_setup: MechArm
+
+# If should load from the tempmemory where the player mech is stored
+export var _c_misc: String
+export (bool) var load_from_memory: bool = false
 
 
 
 # Initialize objects 
 func _ready():
+	if load_from_memory == true:
+		setup = TempMemory.get_mech()
+
+	torso_setup = setup.torso
+	head_setup = setup.head
+	arm_left_setup = setup.arm_left
+	arm_right_setup = setup.arm_right
+
 	initialize_stats()
 	initialize_sprites()
 
