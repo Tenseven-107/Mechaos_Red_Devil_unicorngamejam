@@ -7,7 +7,7 @@ const minimum_speed: int = 5
 var current_speed: float = 0
 export (float) var max_speed: float = 250
 export (float) var acceleration: float = 50
-export (float) var decceleration: float = 25
+const decceleration: float = 2.5
 export (float) var handling: float = 1.5
 
 var velocity: Vector2 = Vector2.ZERO
@@ -88,12 +88,9 @@ func set_new_stats(speed_stat: float, handling_stat: float, boost_stat: float):
 	max_speed = speed_stat
 
 	var new_acceleration = speed_stat / 5
-	var new_decceleration = speed_stat / 100
 	acceleration = new_acceleration
-	decceleration = new_decceleration
 
 	handling = handling_stat
-
 	boost_time = boost_stat
 
 

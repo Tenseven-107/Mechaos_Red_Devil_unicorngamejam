@@ -34,6 +34,7 @@ var arm_right_setup: MechArm
 
 # If should load from the tempmemory where the player mech is stored
 export var _c_misc: String
+export (bool) var random_colors: bool = false
 export (bool) var load_from_memory: bool = false
 
 
@@ -86,13 +87,23 @@ func initialize_stats():
 
 
 func initialize_sprites():
+	var torso_color: Color = torso_setup.color
+	var head_color: Color = head_setup.color
+	var arm_left_color: Color = arm_left_setup.color
+	var arm_right_color: Color = arm_right_setup.color
+	if random_colors == true:
+		torso_color = random_color()
+		head_color = random_color()
+		arm_left_color = random_color()
+		arm_right_color = random_color()
+
 	var torso_sprite: Sprite = torso.get_node("Sprite")
 	torso_sprite.texture = torso_setup.sprite
-	torso_sprite.self_modulate = torso_setup.color
+	torso_sprite.self_modulate = torso_color
 
 	var head_sprite: Sprite = head.get_node("Sprite")
 	head_sprite.texture = head_setup.sprite
-	head_sprite.self_modulate = head_setup.color
+	head_sprite.self_modulate = head_color
 
 	var arm_left_sprite: Sprite = arm_left.get_node("Sprite")
 	var arm_right_sprite: Sprite = arm_right.get_node("Sprite")
@@ -100,10 +111,26 @@ func initialize_sprites():
 	arm_left_sprite.texture =  arm_left_setup.sprite
 	arm_right_sprite.texture = arm_right_setup.sprite
 
-	arm_left_sprite.self_modulate = arm_left_setup.color
-	arm_right_sprite.self_modulate = arm_right_setup.color
+	arm_left_sprite.self_modulate = arm_left_color
+	arm_right_sprite.self_modulate = arm_right_color
 
 	arm_right_sprite.flip_v = true
+
+
+# Random color picker
+func random_color():
+	randomize()
+
+	var r: float = rand_range(0, 1)
+	var g: float = rand_range(0, 1)
+	var b: float = rand_range(0, 1)
+
+	var new_color: Color = Color(r, g, b)
+	return new_color
+
+
+
+
 
 
 

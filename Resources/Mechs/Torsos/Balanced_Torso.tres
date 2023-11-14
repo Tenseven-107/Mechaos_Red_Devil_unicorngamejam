@@ -7,8 +7,8 @@
 script = ExtResource( 1 )
 sprite = ExtResource( 2 )
 color = Color( 1, 1, 1, 1 )
-boost = 50.0
-speed = 200.0
+boost = 25.0
+speed = 150.0
 handling = 1.5
 hitpoints = 100
 armor = 20

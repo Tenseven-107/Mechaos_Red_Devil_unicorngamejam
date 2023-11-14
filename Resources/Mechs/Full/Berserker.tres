@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Tools/MechSetup.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Mechs/Heads/Shield_Head.tres" type="Resource" id=2]
-[ext_resource path="res://Resources/Mechs/Torsos/Balanced_Torso.tres" type="Resource" id=3]
+[ext_resource path="res://Resources/Mechs/Torsos/Balanced_Torso.tres" type="Resource" id=2]
 [ext_resource path="res://Resources/Mechs/Arms/Fist_Arm.tres" type="Resource" id=4]
+[ext_resource path="res://Resources/Mechs/Heads/Shield_Head.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
@@ -11,6 +11,6 @@ _c_arms = ""
 arm_left = ExtResource( 4 )
 arm_right = ExtResource( 4 )
 _c_torso = ""
-torso = ExtResource( 3 )
+torso = ExtResource( 2 )
 _c_head = ""
-head = ExtResource( 2 )
+head = ExtResource( 5 )
