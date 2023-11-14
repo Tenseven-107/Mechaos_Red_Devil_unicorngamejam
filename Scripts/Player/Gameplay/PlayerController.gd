@@ -62,14 +62,14 @@ func movement(delta):
 func boosting(delta):
 	if Input.is_action_pressed("boost") and current_boost_time > 0 and can_boost == true:
 		current_speed += boost
-		current_boost_time -= 0.25
+		current_boost_time -= 0.1
 
 		if current_boost_time <= 0:
 			can_boost = false
 
 	if ((can_boost == false or current_boost_time < boost_time) 
 	and Input.is_action_pressed("boost") == false):
-		current_boost_time += 0.1
+		current_boost_time += 0.075
 
 		if current_boost_time >= boost_time:
 			current_boost_time = boost_time

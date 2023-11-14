@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player/Gameplay/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Utils/Backend/MechInitializer.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/sprite_trail/SpriteTrail.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player/Gameplay/PlayerWeaponController.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Player/Gameplay/PlayerAbility.gd" type="Script" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.08276
@@ -67,7 +68,8 @@ life_time = 0.1
 copy_period = 0.05
 gradient = SubResource( 3 )
 
-[node name="Abilities" type="Node" parent="Body/Head"]
+[node name="Ability" type="Node2D" parent="Body/Head"]
+script = ExtResource( 11 )
 
 [node name="Arms" type="Node2D" parent="Body"]
 

@@ -83,7 +83,7 @@ func shake(new_shake, shake_time, shake_limit):
 	shake_timer.start()
 
 
-func _on_Timer_timeout():
+func _on_Shake_timer_timeout():
 	shake_amount = 0
 	shaking = false
 
@@ -105,7 +105,7 @@ func zoom_cam(new_zoom, zoom_time, zoom_limit):
 	zoom_timer.start()
 
 
-func _on_Timer2_timeout():
+func _on_Zoom_timer_timeout():
 	shake_tween.interpolate_property(self, "zoom", zoom, normal_zoom, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	shake_tween.start()
 
@@ -121,7 +121,7 @@ func time_stop(time):
 
 
 
-func _on_Timer3_timeout():
+func _on_Hitstop_timer_timeout():
 	Engine.time_scale = 1
 
 

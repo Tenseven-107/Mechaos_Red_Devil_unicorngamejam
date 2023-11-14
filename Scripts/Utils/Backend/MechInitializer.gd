@@ -68,18 +68,28 @@ func initialize_stats():
 	if arm_right.has_method("initialize_weapon"):
 		arm_right.initialize_weapon(arm_right_setup.weapon)
 
+	var ability_holder = head.get_node("Ability")
+	if ability_holder.has_method("initialize_ability"):
+		ability_holder.initialize_ability(head_setup.ability)
+
 
 func initialize_sprites():
 	var torso_sprite: Sprite = torso.get_node("Sprite")
 	torso_sprite.texture = torso_setup.sprite
+	torso_sprite.self_modulate = torso_setup.color
 
 	var head_sprite: Sprite = head.get_node("Sprite")
 	head_sprite.texture = head_setup.sprite
+	head_sprite.self_modulate = head_setup.color
 
 	var arm_left_sprite: Sprite = arm_left.get_node("Sprite")
 	var arm_right_sprite: Sprite = arm_right.get_node("Sprite")
+
 	arm_left_sprite.texture =  arm_left_setup.sprite
 	arm_right_sprite.texture = arm_right_setup.sprite
+
+	arm_left_sprite.self_modulate = arm_left_setup.color
+	arm_right_sprite.self_modulate = arm_right_setup.color
 
 	arm_right_sprite.flip_v = true
 

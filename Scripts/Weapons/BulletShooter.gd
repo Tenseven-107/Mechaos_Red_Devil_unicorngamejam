@@ -71,6 +71,11 @@ func play_effect():
 
 			bullet_container.call_deferred("add_child", bullet_instance)
 
+		# Play effects on fire
+		for effect in effects_on_fire:
+			var play_effect: EffectPlayer = get_node(effect)
+			play_effect.play_effect()
+
 
 
 # Initialization
