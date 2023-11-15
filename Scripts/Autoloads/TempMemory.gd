@@ -7,6 +7,17 @@ func _ready():
 
 
 
+# Recording time
+var total_milliseconds: float = 0
+var total_seconds: int = 0
+var total_minutes: int = 0
+var total_hours: int = 0
+
+func add_total_time(hours: int, minutes: int, seconds: int, milliseconds: float):
+	pass
+
+
+
 # Saving and building the player mech
 var default_arms: MechArm = preload("res://Resources/Mechs/Arms/Naked_Arm.tres")
 var default_head: MechHead = preload("res://Resources/Mechs/Heads/Shield_Head.tres")

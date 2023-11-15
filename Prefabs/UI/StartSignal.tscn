@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/UI/Fonts/Big_countdown.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Utils/Gamefeel/StartSignal.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+// Ranges from 0 to 1 over the course of the transition.
+// We use this to actually animate the shader.
+uniform float progress : hint_range(0, 1);
+
+// Size of each diamond, in pixels.
+uniform float diamondPixelSize = 10.0f;
+
+void fragment() {
+	float xFraction = fract(FRAGCOORD.x / diamondPixelSize);
+	float yFraction = fract(FRAGCOORD.y / diamondPixelSize);
+	float xDistance = abs(xFraction - 0.5);
+	float yDistance = abs(yFraction - 0.5);
+	if (xDistance + yDistance + UV.x + UV.y > progress * 4.0f) {
+		discard;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/progress = 1.0
+shader_param/diamondPixelSize = 45.0
+
+[node name="StartSignal" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Go_time" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="StartUI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Control" type="Control" parent="StartUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="StartUI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 200, 112 )
+custom_fonts/font = ExtResource( 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Transition" type="ColorRect" parent="StartUI/Control"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Timer_tween" type="Tween" parent="."]
+
+[node name="Transition_tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

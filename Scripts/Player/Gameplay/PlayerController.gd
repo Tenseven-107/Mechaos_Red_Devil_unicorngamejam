@@ -1,5 +1,9 @@
 extends KinematicBody2D
+class_name PlayerController
 
+
+export (NodePath) var boost_bar_path: NodePath
+onready var boost_bar: TextureProgress
 
 # Stats
 # - Movement
@@ -19,11 +23,18 @@ var can_boost: bool = true
 var current_boost_time: float = 0
 export (float) var boost_time: float = 25
 
+# Misc
+const group: String = "Racer"
+var active: bool = false
+
 
 
 # Setup
 func _ready():
-	current_boost_time = boost_time
+	add_to_group(group)
+	GlobalSignals.connect("start_race", self, "start")
+
+func start(): active = true
 
 
 
@@ -53,7 +64,8 @@ func movement(delta):
 	or current_speed > max_speed):
 		current_speed -= decceleration
 
-	if current_speed > minimum_speed: velocity = Vector2(move_input * current_speed, 0).rotated(rotation)
+	if current_speed > minimum_speed and active == true: 
+		velocity = Vector2(move_input * current_speed, 0).rotated(rotation)
 	velocity = move_and_slide(velocity) * delta
 
 
@@ -67,6 +79,10 @@ func boosting(delta):
 		if current_boost_time <= 0:
 			can_boost = false
 
+			boost_bar.modulate = Color.red
+
+		boost_bar.value = current_boost_time
+
 	if ((can_boost == false or current_boost_time < boost_time) 
 	and Input.is_action_pressed("boost") == false):
 		current_boost_time += 0.075
@@ -74,6 +90,11 @@ func boosting(delta):
 		if current_boost_time >= boost_time:
 			current_boost_time = boost_time
 			can_boost = true
+
+			boost_bar.modulate = Color.white
+
+		boost_bar.value = current_boost_time
+
 
 
 
@@ -92,6 +113,11 @@ func set_new_stats(speed_stat: float, handling_stat: float, boost_stat: float):
 
 	handling = handling_stat
 	boost_time = boost_stat
+	current_boost_time = boost_time
+
+	boost_bar = get_node(boost_bar_path)
+	boost_bar.max_value = boost_time
+	boost_bar.value = current_boost_time
 
 
 

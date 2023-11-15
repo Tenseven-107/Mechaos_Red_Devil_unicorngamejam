@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Weapons/BulletShooter.gd"
 }, {
+"base": "Area2D",
+"class": "Checkpoint",
+"language": "GDScript",
+"path": "res://Scripts/Utils/Gameplay/Checkpoint.gd"
+}, {
 "base": "EditorProperty",
 "class": "EC_CreateCategory",
 "language": "GDScript",
@@ -48,6 +53,11 @@ _global_script_classes=[ {
 "class": "GameCamera",
 "language": "GDScript",
 "path": "res://Scripts/Utils/Gamefeel/GameCamera.gd"
+}, {
+"base": "Node",
+"class": "LapManager",
+"language": "GDScript",
+"path": "res://Scripts/Utils/Gameplay/LapManager.gd"
 }, {
 "base": "Resource",
 "class": "MechArm",
@@ -79,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Tools/MechParts/MechTorsoSetup.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "PlayerController",
+"language": "GDScript",
+"path": "res://Scripts/Player/Gameplay/PlayerController.gd"
+}, {
 "base": "Node",
 "class": "PostProcessingLayer",
 "language": "GDScript",
@@ -88,17 +103,20 @@ _global_script_class_icons={
 "Bullet": "",
 "BulletContainer": "",
 "BulletShooter": "",
+"Checkpoint": "",
 "EC_CreateCategory": "",
 "EffectPlayer": "",
 "Entity": "",
 "FXContainer": "",
 "GameCamera": "",
+"LapManager": "",
 "MechArm": "",
 "MechEntity": "",
 "MechHead": "",
 "MechInitializer": "",
 "MechSetup": "",
 "MechTorso": "",
+"PlayerController": "",
 "PostProcessingLayer": ""
 }
 

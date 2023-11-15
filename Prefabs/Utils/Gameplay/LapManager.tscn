@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Utils/Gameplay/LapManager.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/UI/Fonts/Small_font.tres" type="DynamicFont" id=2]
+
+[node name="LapManager" type="Node"]
+script = ExtResource( 1 )
+checkpoints = [ NodePath("../Environment/Checkpoints/Checkpoint"), NodePath("../Environment/Checkpoints/Checkpoint2"), NodePath("../Environment/Checkpoints/Checkpoint3"), NodePath("../Environment/Checkpoints/Checkpoint4"), NodePath("../Environment/Checkpoints/Checkpoint5"), NodePath("../Environment/Checkpoints/Checkpoint6"), NodePath("../Environment/Checkpoints/Checkpoint7"), NodePath("../Environment/Checkpoints/Checkpoint8"), NodePath("../Environment/Checkpoints/Checkpoint9"), NodePath("../Environment/Checkpoints/Checkpoint10") ]
+
+[node name="LapUI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Control" type="Control" parent="LapUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Laps" type="Label" parent="LapUI/Control"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 80.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 34, 14 )
+custom_colors/font_color = Color( 0.172549, 0.909804, 0.960784, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "12/12"
+align = 1
+valign = 1
+
+[node name="Lap_fade" type="ColorRect" parent="LapUI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+
+[node name="Lap_tween" type="Tween" parent="."]

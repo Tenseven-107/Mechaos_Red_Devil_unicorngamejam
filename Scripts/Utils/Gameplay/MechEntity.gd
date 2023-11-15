@@ -5,6 +5,9 @@ class_name MechEntity
 # Objects
 onready var controller = get_parent()
 
+export (NodePath) var hp_bar_path: NodePath
+onready var hp_bar: TextureProgress
+
 # Variables
 var current_hp: int = 25
 export (int) var max_hp: int = 25
@@ -19,6 +22,7 @@ const max_armor: int = 50
 # EffectPlayers
 export var _c_effect_players: String
 export (Array, NodePath) var effects_hit: Array
+export (Array, NodePath) var effects_armor: Array
 export (Array, NodePath) var effects_die: Array
 
 
@@ -44,6 +48,10 @@ func set_new_stats(hp_stat: int, armor_stat: int):
 	armor = armor_stat
 	armor = clamp(armor, 0, max_armor)
 
+	hp_bar = get_node(hp_bar_path)
+	hp_bar.max_value = max_hp
+	hp_bar.value = current_hp
+
 
 # Handle hits
 func check_hit(body: Node):
@@ -65,6 +73,13 @@ func handle_hit(damage: int, hit_team: int):
 
 		if current_hp <= 0:
 			die()
+
+	if armor_calculation > armor:
+		for effect in effects_armor:
+			var play_effect: EffectPlayer = get_node(effect)
+			play_effect.play_effect()
+
+		hp_bar.value = current_hp
 
 
 
