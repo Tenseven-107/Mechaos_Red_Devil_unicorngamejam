@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/Gamefeel/GameCamera.gd"
 }, {
+"base": "Area2D",
+"class": "Killbox",
+"language": "GDScript",
+"path": "res://Scripts/Utils/Gameplay/Killbox.gd"
+}, {
 "base": "Node",
 "class": "LapManager",
 "language": "GDScript",
@@ -98,6 +103,11 @@ _global_script_classes=[ {
 "class": "PostProcessingLayer",
 "language": "GDScript",
 "path": "res://Scripts/Effects/PostProcessingLayer.gd"
+}, {
+"base": "PathFollow2D",
+"class": "TrafficFollower",
+"language": "GDScript",
+"path": "res://Scripts/Utils/Backend/TrafficFollower.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
@@ -109,6 +119,7 @@ _global_script_class_icons={
 "Entity": "",
 "FXContainer": "",
 "GameCamera": "",
+"Killbox": "",
 "LapManager": "",
 "MechArm": "",
 "MechEntity": "",
@@ -117,7 +128,8 @@ _global_script_class_icons={
 "MechSetup": "",
 "MechTorso": "",
 "PlayerController": "",
-"PostProcessingLayer": ""
+"PostProcessingLayer": "",
+"TrafficFollower": ""
 }
 
 [application]

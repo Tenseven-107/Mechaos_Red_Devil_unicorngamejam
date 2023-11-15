@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/Player/Gameplay/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Utils/Backend/MechInitializer.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Resources/Mechs/Full/Berserker.tres" type="Resource" id=14]
 [ext_resource path="res://Sprites/UI/Hud/Boost_bar.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/UI/Hud/HP_bar.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/Utils/Gameplay/Killbox.gd" type="Script" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.08276
@@ -29,6 +30,9 @@ colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.588235 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id=5]
+radius = 9.05539
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 boost_bar_path = NodePath("Boost_UI/BoostBar")
@@ -39,6 +43,8 @@ shape = SubResource( 1 )
 [node name="Effects" type="Node" parent="."]
 
 [node name="CameraEffect" parent="Effects" instance=ExtResource( 8 )]
+new_cam_shake = 500
+cam_shake_limit = 1000
 
 [node name="MechInitializer" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -163,3 +169,9 @@ margin_bottom = 22.0
 value = 100.0
 texture_progress = ExtResource( 16 )
 fill_mode = 5
+
+[node name="Killbox" type="Area2D" parent="."]
+script = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
+shape = SubResource( 5 )

@@ -7,7 +7,6 @@ class_name Entity
 var current_hp: int = 25
 export (int) var max_hp: int = 25
 export (int) var team: int = 0
-export (float) var i_frame_time: float = 1
 
 # EffectPlayers
 export var _c_effect_players: String

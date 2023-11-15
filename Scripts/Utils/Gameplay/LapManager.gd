@@ -44,9 +44,9 @@ func finish():
 	var laps_text: String = str(current_lap) + "/" + str(total_laps)
 	laps_label.text = laps_text
 
-	lap_tween.interpolate_property(laps_label, "rect_scale", Vector2.ONE * 2, Vector2.ONE, 0.5,
+	lap_tween.interpolate_property(laps_label, "rect_scale", Vector2.ONE * 2, Vector2.ONE, 1.5,
 	Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
-	lap_tween.interpolate_property(lap_fade, "color", Color.silver, Color(0,0,0,0), 0.35, 
+	lap_tween.interpolate_property(lap_fade, "color", Color.silver, Color(0,0,0,0), 1, 
 	Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
 	lap_tween.start()
 
