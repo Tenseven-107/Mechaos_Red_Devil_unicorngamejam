@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Utils/Gameplay/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Effects/Lamp_light.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Obstacles/Props/Lantern.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[node name="Car" type="Node2D"]
+
+[node name="Entity" type="Area2D" parent="."]
+script = ExtResource( 1 )
+max_hp = 5
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
+shape = SubResource( 1 )
+
+[node name="Light" type="Sprite" parent="."]
+modulate = Color( 0.996078, 0.905882, 0.380392, 1 )
+material = SubResource( 2 )
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 2
+texture = ExtResource( 3 )

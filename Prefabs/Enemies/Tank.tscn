@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Utils/Gameplay/Entity.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemies/Turret.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Obstacles/Enemies/Tank_turret.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Obstacles/Enemies/Tank.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Weapons/Projectiles/Bullet_gun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Weapons/BulletShooter.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 14 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 150.0
+
+[node name="Tank" type="Node2D"]
+
+[node name="Entity" type="Area2D" parent="."]
+script = ExtResource( 1 )
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -3 )
+texture = ExtResource( 4 )
+
+[node name="Turret" type="Node2D" parent="."]
+script = ExtResource( 2 )
+bullet_shooter_path = NodePath("BulletShooter")
+detection_path = NodePath("Detection")
+
+[node name="Sprite" type="Sprite" parent="Turret"]
+rotation = 1.5708
+texture = ExtResource( 3 )
+
+[node name="BulletShooter" type="Node" parent="Turret"]
+script = ExtResource( 6 )
+team = 1
+projectile = ExtResource( 5 )
+firerate_cooldown = 0.5
+muzzle_path = NodePath("..")
+
+[node name="Detection" type="Area2D" parent="Turret"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Turret/Detection"]
+shape = SubResource( 2 )

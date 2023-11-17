@@ -66,6 +66,8 @@ func handle_hit(damage: int, hit_team: int):
 
 		controller.decrease_speed(armor)
 
+		i_frames.start()
+
 		# Play effects on hit
 		for effect in effects_hit:
 			var play_effect: EffectPlayer = get_node(effect)
@@ -79,7 +81,7 @@ func handle_hit(damage: int, hit_team: int):
 			var play_effect: EffectPlayer = get_node(effect)
 			play_effect.play_effect()
 
-		hp_bar.value = current_hp
+	hp_bar.value = current_hp
 
 
 
