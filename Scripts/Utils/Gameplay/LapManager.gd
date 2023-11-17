@@ -10,7 +10,7 @@ export (Array, NodePath) var checkpoints: Array
 var next_checkpoint_index = 0
 
 var current_lap: int = 0
-export (int) var total_laps: int = 6
+export (int) var total_laps: int = 4
 
 
 

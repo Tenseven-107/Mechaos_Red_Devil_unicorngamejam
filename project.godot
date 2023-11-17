@@ -94,6 +94,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Tools/MechParts/MechTorsoSetup.gd"
 }, {
+"base": "Node",
+"class": "MoneyManager",
+"language": "GDScript",
+"path": "res://Scripts/Utils/Gameplay/MoneyManager.gd"
+}, {
+"base": "Node2D",
+"class": "MoneyPopup",
+"language": "GDScript",
+"path": "res://Scripts/Effects/MoneyPopup.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PlayerController",
 "language": "GDScript",
@@ -127,6 +137,8 @@ _global_script_class_icons={
 "MechInitializer": "",
 "MechSetup": "",
 "MechTorso": "",
+"MoneyManager": "",
+"MoneyPopup": "",
 "PlayerController": "",
 "PostProcessingLayer": "",
 "TrafficFollower": ""

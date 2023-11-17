@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Utils/Gameplay/Entity.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Effects/Lamp_light.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Obstacles/Props/Lantern.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Utils/Gameplay/AddMoneyEffect.gd" type="Script" id=4]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/AddMoneyEffect.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 3 )
@@ -10,12 +13,13 @@ extents = Vector2( 3, 3 )
 [sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
 
-[node name="Car" type="Node2D"]
+[node name="Lamp" type="Node2D"]
 
 [node name="Entity" type="Area2D" parent="."]
 script = ExtResource( 1 )
 max_hp = 5
 team = 1
+effects_die = [ NodePath("../Effects/CameraEffect"), NodePath("../Effects/AddMoneyEffect") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
 shape = SubResource( 1 )
@@ -29,3 +33,13 @@ texture = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 z_index = 2
 texture = ExtResource( 3 )
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="CameraEffect" parent="Effects" instance=ExtResource( 5 )]
+new_cam_shake = 250
+
+[node name="AddMoneyEffect" parent="Effects" instance=ExtResource( 6 )]
+script = ExtResource( 4 )
+money = 75
+pos_path = NodePath("../..")

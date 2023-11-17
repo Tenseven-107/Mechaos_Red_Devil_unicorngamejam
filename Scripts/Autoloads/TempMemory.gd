@@ -18,6 +18,23 @@ func add_total_time(hours: int, minutes: int, seconds: int, milliseconds: float)
 
 
 
+# Storing money
+var current_money: int = 0
+
+func add_money(new_money: int):
+	current_money += new_money
+
+func remove_money(removed_money: int):
+	current_money -= removed_money
+
+
+func can_remove_money(money: int):
+	if current_money - money >= 0:
+		return true
+
+	else: return false
+
+
 # Saving and building the player mech
 var default_arms: MechArm = preload("res://Resources/Mechs/Arms/Naked_Arm.tres")
 var default_head: MechHead = preload("res://Resources/Mechs/Heads/Shield_Head.tres")
