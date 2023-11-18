@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Blazing Drift Fever EX.mp3-fc612403f518070f55334f96cc761fd1.mp3str"
+
+[deps]
+
+source_file="res://SFX/Music/StageMusic/Blazing Drift Fever EX.mp3"
+dest_files=[ "res://.import/Blazing Drift Fever EX.mp3-fc612403f518070f55334f96cc761fd1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

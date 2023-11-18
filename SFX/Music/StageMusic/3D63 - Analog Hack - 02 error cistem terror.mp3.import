@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/3D63 - Analog Hack - 02 error cistem terror.mp3-4a31f57deb7d848f3fecd10a5b8d01bd.mp3str"
+
+[deps]
+
+source_file="res://SFX/Music/StageMusic/3D63 - Analog Hack - 02 error cistem terror.mp3"
+dest_files=[ "res://.import/3D63 - Analog Hack - 02 error cistem terror.mp3-4a31f57deb7d848f3fecd10a5b8d01bd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

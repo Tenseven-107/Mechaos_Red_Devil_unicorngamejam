@@ -17,6 +17,7 @@ export (Array, NodePath) var effects_die: Array
 
 # Setup
 func _ready():
+	current_hp = max_hp
 	self.connect("body_entered", self, "check_hit")
 
 

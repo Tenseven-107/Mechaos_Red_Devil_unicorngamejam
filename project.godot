@@ -154,6 +154,7 @@ config/icon="res://icon.png"
 
 GlobalSignals="*res://Scripts/Autoloads/GlobalSignals.gd"
 TempMemory="*res://Scripts/Autoloads/TempMemory.gd"
+MusicPlayer="*res://Scripts/Autoloads/MusicPlayer.gd"
 
 [debug]
 

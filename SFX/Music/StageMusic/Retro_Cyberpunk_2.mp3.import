@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Retro_Cyberpunk_2.mp3-bb93eb2eaf0bf3a68603b35d6de63714.mp3str"
+
+[deps]
+
+source_file="res://SFX/Music/StageMusic/Retro_Cyberpunk_2.mp3"
+dest_files=[ "res://.import/Retro_Cyberpunk_2.mp3-bb93eb2eaf0bf3a68603b35d6de63714.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

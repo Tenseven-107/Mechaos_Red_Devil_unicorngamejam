@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/3D63 - Analog Hack - 03 Oracles & Miracles.mp3-09130270e4eefe1fd33e30322c625c98.mp3str"
+
+[deps]
+
+source_file="res://SFX/Music/StageMusic/3D63 - Analog Hack - 03 Oracles & Miracles.mp3"
+dest_files=[ "res://.import/3D63 - Analog Hack - 03 Oracles & Miracles.mp3-09130270e4eefe1fd33e30322c625c98.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

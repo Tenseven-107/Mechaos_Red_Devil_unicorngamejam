@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Prefabs/Utils/Backend/GameCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Utils/Backend/BulletContainer.gd" type="Script" id=2]
@@ -26,6 +26,10 @@
 [ext_resource path="res://Prefabs/Enemies/Cop.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Prefabs/Enemies/MachineGun-cop.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Prefabs/Utils/Gameplay/MoneyManager.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Prefabs/Enemies/Blockade.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Prefabs/Enemies/Mine.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Prefabs/Utils/Backend/MusicSetter.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Prefabs/Props/Building.tscn" type="PackedScene" id=30]
 
 [sub_resource type="Curve2D" id=8]
 _data = {
@@ -89,6 +93,9 @@ enviroment = ExtResource( 21 )
 [node name="StartSignal" parent="." instance=ExtResource( 14 )]
 
 [node name="Stopwatch" parent="." instance=ExtResource( 15 )]
+
+[node name="MusicSetter" parent="." instance=ExtResource( 29 )]
+music_theme = 3
 
 [node name="GameCamera" parent="." instance=ExtResource( 1 )]
 current = true
@@ -170,6 +177,51 @@ curve = SubResource( 13 )
 position = Vector2( 54, -108 )
 rotation = 0.495148
 obstacle_object = ExtResource( 19 )
+
+[node name="ObstacleSpawner82" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 912, 100 )
+rotation = -0.803538
+obstacle_object = ExtResource( 27 )
+
+[node name="ObstacleSpawner83" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 957, 48 )
+rotation = -1.13097
+obstacle_object = ExtResource( 27 )
+
+[node name="ObstacleSpawner84" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 964, -5.00003 )
+rotation = -1.56234
+obstacle_object = ExtResource( 27 )
+
+[node name="ObstacleSpawner85" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1844, -711 )
+rotation = -1.56234
+obstacle_object = ExtResource( 28 )
+
+[node name="ObstacleSpawner86" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2096, -588 )
+rotation = -1.56234
+obstacle_object = ExtResource( 28 )
+
+[node name="ObstacleSpawner87" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2308, -824 )
+rotation = -1.56234
+obstacle_object = ExtResource( 28 )
+
+[node name="ObstacleSpawner88" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1818, -482 )
+rotation = -1.56234
+obstacle_object = ExtResource( 28 )
+
+[node name="ObstacleSpawner90" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2348, -476 )
+rotation = -1.56234
+obstacle_object = ExtResource( 28 )
+
+[node name="ObstacleSpawner89" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2090, -940 )
+rotation = -1.56234
+obstacle_object = ExtResource( 28 )
 
 [node name="ObstacleSpawner60" parent="Environment/Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 73, -111 )
@@ -505,7 +557,65 @@ position = Vector2( -98, 934 )
 rotation = 2.53986
 obstacle_object = ExtResource( 25 )
 
-[node name="Node2D" type="Node2D" parent="Environment/Obstacles"]
+[node name="ObstacleSpawner91" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1028, 578 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner92" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1131, 449 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner93" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1025, 388 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner94" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1300, 948 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner95" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1206, 950 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner96" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1269, 1129 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner97" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1310, 786 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner98" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1062, 1464 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner99" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1026, 1638 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner100" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1174, 1557 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner101" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2311, 1064 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner102" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2468, 759 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner103" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 2309, 433 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner104" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1578, -421 )
+obstacle_object = ExtResource( 30 )
+
+[node name="ObstacleSpawner105" parent="Environment/Obstacles" instance=ExtResource( 18 )]
+position = Vector2( 1230, -421 )
+obstacle_object = ExtResource( 30 )
 
 [node name="Misc" type="Node2D" parent="Environment"]
 
