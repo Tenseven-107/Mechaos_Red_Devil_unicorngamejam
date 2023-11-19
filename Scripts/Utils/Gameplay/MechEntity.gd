@@ -76,7 +76,7 @@ func handle_hit(damage: int, hit_team: int):
 		if current_hp <= 0:
 			die()
 
-	if armor_calculation > armor:
+	if armor_calculation > armor and hit_team != team:
 		for effect in effects_armor:
 			var play_effect: EffectPlayer = get_node(effect)
 			play_effect.play_effect()

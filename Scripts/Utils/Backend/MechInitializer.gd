@@ -114,7 +114,7 @@ func initialize_sprites():
 	arm_left_sprite.self_modulate = arm_left_color
 	arm_right_sprite.self_modulate = arm_right_color
 
-	arm_right_sprite.flip_v = true
+	arm_left_sprite.flip_v = true
 
 
 # Random color picker

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Prefabs/Utils/Backend/MusicSetter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Mechs/Arms/Arm.png" type="Texture" id=2]
@@ -22,6 +22,20 @@
 [ext_resource path="res://Sprites/UI/Hud/HP_bar.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/UI/Hud/Boost_bar.png" type="Texture" id=21]
 [ext_resource path="res://Resources/Mechs/Heads/Firebreath_Head.tres" type="Resource" id=22]
+[ext_resource path="res://Resources/Mechs/Heads/Shield_Head.tres" type="Resource" id=23]
+[ext_resource path="res://Sprites/UI/Hud/Roll_out_button.png" type="Texture" id=24]
+[ext_resource path="res://Resources/Mechs/Torsos/Handling_Torso.tres" type="Resource" id=25]
+[ext_resource path="res://Resources/Mechs/Torsos/HP_Torso.tres" type="Resource" id=26]
+[ext_resource path="res://Resources/Mechs/Torsos/Boost_Torso.tres" type="Resource" id=27]
+[ext_resource path="res://Resources/Mechs/Torsos/Armor_Torso.tres" type="Resource" id=28]
+[ext_resource path="res://Resources/Mechs/Torsos/Speed_Torso.tres" type="Resource" id=29]
+[ext_resource path="res://Resources/Mechs/Torsos/Balanced_Torso.tres" type="Resource" id=30]
+[ext_resource path="res://Scripts/UI/Building/BuildingTabs.gd" type="Script" id=31]
+[ext_resource path="res://Scripts/UI/Building/CategoryButton.gd" type="Script" id=32]
+[ext_resource path="res://Resources/Mechs/Arms/Gun_Arm.tres" type="Resource" id=33]
+[ext_resource path="res://Resources/Mechs/Arms/MachineGun_Arm.tres" type="Resource" id=34]
+[ext_resource path="res://Resources/Mechs/Arms/Naked_Arm.tres" type="Resource" id=35]
+[ext_resource path="res://Resources/Mechs/Arms/Fist_Arm.tres" type="Resource" id=36]
 
 [sub_resource type="Shader" id=1]
 code = "/*
@@ -93,6 +107,10 @@ shader_param/line_width = 0.1
 shader_param/line_size = 0.1
 shader_param/back_color = Color( 0, 0, 0, 1 )
 shader_param/line_color = Color( 0.388235, 0.780392, 0.301961, 1 )
+
+[sub_resource type="StyleBoxTexture" id=21]
+texture = ExtResource( 24 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 11 )
@@ -178,6 +196,7 @@ margin_left = -250.0
 margin_top = -250.0
 margin_right = 250.0
 margin_bottom = 250.0
+mouse_filter = 1
 
 [node name="Mech" type="Node2D" parent="Menu"]
 scale = Vector2( 2, 2 )
@@ -203,12 +222,17 @@ script = ExtResource( 15 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Back" type="TextureRect" parent="Build-Menu/Control"]
+[node name="MenuItems" type="Control" parent="Build-Menu/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Back" type="TextureRect" parent="Build-Menu/Control/MenuItems"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 
-[node name="Money" type="RichTextLabel" parent="Build-Menu/Control"]
+[node name="Money" type="RichTextLabel" parent="Build-Menu/Control/MenuItems"]
 anchor_right = 0.7125
 anchor_bottom = 0.178571
 custom_fonts/normal_font = ExtResource( 17 )
@@ -216,16 +240,22 @@ bbcode_enabled = true
 bbcode_text = "[center][rainbow][wave]$ 200000"
 text = "$ 200000"
 scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
-[node name="ColorPicker" type="ColorPicker" parent="Build-Menu/Control"]
+[node name="Roll-out" type="Button" parent="Build-Menu/Control/MenuItems"]
+anchor_top = 0.308036
+anchor_right = 0.08
+anchor_bottom = 0.450893
+custom_styles/normal = SubResource( 21 )
+
+[node name="ColorPicker" type="ColorPicker" parent="Build-Menu/Control/MenuItems"]
 anchor_left = 0.7151
+anchor_top = 0.00446415
 anchor_right = 1.0
-anchor_bottom = 0.680536
-margin_left = -194.04
-margin_bottom = 259.56
+anchor_bottom = 0.685
+margin_left = -190.04
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 263.56
 rect_scale = Vector2( 0.37, 0.37 )
 rect_pivot_offset = Vector2( 308, 0 )
 edit_alpha = false
@@ -240,6 +270,7 @@ __meta__ = {
 anchor_top = 0.549107
 anchor_right = 0.335
 anchor_bottom = 0.691964
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -251,6 +282,8 @@ custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 5 )
+script = ExtResource( 32 )
+tabs_container_path = NodePath("../../Tabs")
 
 [node name="Icon" type="TextureRect" parent="Build-Menu/Control/Categories/Heads"]
 margin_right = 32.0
@@ -265,6 +298,9 @@ custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 5 )
+script = ExtResource( 32 )
+tabs_container_path = NodePath("../../Tabs")
+tab_to_show = 1
 
 [node name="Icon" type="TextureRect" parent="Build-Menu/Control/Categories/torsos"]
 margin_right = 32.0
@@ -279,6 +315,9 @@ custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 5 )
+script = ExtResource( 32 )
+tabs_container_path = NodePath("../../Tabs")
+tab_to_show = 2
 
 [node name="Icon" type="TextureRect" parent="Build-Menu/Control/Categories/Arms-left"]
 margin_right = 32.0
@@ -294,6 +333,9 @@ custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 5 )
+script = ExtResource( 32 )
+tabs_container_path = NodePath("../../Tabs")
+tab_to_show = 3
 
 [node name="Icon" type="TextureRect" parent="Build-Menu/Control/Categories/Arms-right"]
 margin_right = 32.0
@@ -301,8 +343,10 @@ margin_bottom = 32.0
 texture = ExtResource( 12 )
 
 [node name="Tabs" type="Control" parent="Build-Menu/Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 31 )
 
 [node name="Heads" type="HBoxContainer" parent="Build-Menu/Control/Tabs"]
 margin_left = 1.0
@@ -358,6 +402,285 @@ part_resource = ExtResource( 22 )
 price = 20000
 item_id = "fire_head"
 
+[node name="Shield" type="Button" parent="Build-Menu/Control/Tabs/Heads"]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 23 )
+price = 36000
+item_id = "shield_head"
+
+[node name="Torsos" type="HBoxContainer" parent="Build-Menu/Control/Tabs"]
+margin_left = 1.0
+margin_top = 161.0
+margin_right = 399.0
+margin_bottom = 223.0
+
+[node name="Balanced" type="Button" parent="Build-Menu/Control/Tabs/Torsos"]
+margin_right = 48.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 30 )
+item_type = 1
+item_id = "balanced_torso"
+
+[node name="Speed" type="Button" parent="Build-Menu/Control/Tabs/Torsos"]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 29 )
+item_type = 1
+price = 20000
+item_id = "speed_torso"
+
+[node name="Handling" type="Button" parent="Build-Menu/Control/Tabs/Torsos"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 25 )
+item_type = 1
+price = 20000
+item_id = "handling_torso"
+
+[node name="Boost" type="Button" parent="Build-Menu/Control/Tabs/Torsos"]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 27 )
+item_type = 1
+price = 50000
+item_id = "boost_torso"
+
+[node name="Armor" type="Button" parent="Build-Menu/Control/Tabs/Torsos"]
+margin_left = 208.0
+margin_right = 256.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 28 )
+item_type = 1
+price = 25000
+item_id = "armor_torso"
+
+[node name="HP" type="Button" parent="Build-Menu/Control/Tabs/Torsos"]
+margin_left = 260.0
+margin_right = 308.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 26 )
+item_type = 1
+price = 5000
+item_id = "hp_torso"
+
+[node name="Arms-left" type="HBoxContainer" parent="Build-Menu/Control/Tabs"]
+margin_left = 1.0
+margin_top = 161.0
+margin_right = 399.0
+margin_bottom = 223.0
+
+[node name="Naked" type="Button" parent="Build-Menu/Control/Tabs/Arms-left"]
+margin_right = 48.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 35 )
+item_type = 2
+item_id = "arm_naked"
+
+[node name="Fist" type="Button" parent="Build-Menu/Control/Tabs/Arms-left"]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 36 )
+item_type = 2
+item_id = "arm_fist"
+
+[node name="Gun" type="Button" parent="Build-Menu/Control/Tabs/Arms-left"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 33 )
+item_type = 2
+price = 10000
+item_id = "arm_gun"
+
+[node name="MachineGun" type="Button" parent="Build-Menu/Control/Tabs/Arms-left"]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 34 )
+item_type = 2
+price = 20000
+item_id = "arm_mg"
+
+[node name="Arms-right" type="HBoxContainer" parent="Build-Menu/Control/Tabs"]
+margin_left = 1.0
+margin_top = 161.0
+margin_right = 399.0
+margin_bottom = 223.0
+
+[node name="Naked" type="Button" parent="Build-Menu/Control/Tabs/Arms-right"]
+margin_right = 48.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 35 )
+item_type = 3
+item_id = "arm_naked"
+
+[node name="Fist" type="Button" parent="Build-Menu/Control/Tabs/Arms-right"]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 36 )
+item_type = 3
+item_id = "arm_fist"
+
+[node name="Gun" type="Button" parent="Build-Menu/Control/Tabs/Arms-right"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 33 )
+item_type = 3
+price = 10000
+item_id = "arm_gun"
+
+[node name="MachineGun" type="Button" parent="Build-Menu/Control/Tabs/Arms-right"]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 62.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 4 )
+script = ExtResource( 16 )
+menu_path = NodePath("../../../..")
+popup_path = NodePath("../../../Popup")
+part_resource = ExtResource( 34 )
+item_type = 3
+price = 20000
+item_id = "arm_mg"
+
 [node name="Popup" type="ConfirmationDialog" parent="Build-Menu/Control"]
 visible = true
 anchor_left = 0.5
@@ -372,4 +695,9 @@ theme = SubResource( 20 )
 popup_exclusive = true
 dialog_text = "Buy for $20000"
 
-[connection signal="color_changed" from="Build-Menu/Control/ColorPicker" to="Build-Menu" method="_on_ColorPicker_color_changed"]
+[node name="Transition" type="Control" parent="Build-Menu/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[connection signal="color_changed" from="Build-Menu/Control/MenuItems/ColorPicker" to="Build-Menu" method="_on_ColorPicker_color_changed"]

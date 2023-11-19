@@ -5,6 +5,7 @@ extends Node
 func _ready():
 	create_new_mech()
 
+	current_money = default_money
 	bought_items_list = default_items_list
 
 
@@ -54,7 +55,8 @@ func add_total_time(minutes: int, seconds: int, milliseconds: float):
 
 
 # Storing money
-var current_money: int = 200000
+const default_money: int = 20000
+var current_money: int = 0
 
 func add_money(new_money: int):
 	current_money += new_money
@@ -72,9 +74,9 @@ func can_remove_money(money: int):
 
 
 # Saving and building the player mech
-var default_arms: MechArm = preload("res://Resources/Mechs/Arms/Naked_Arm.tres")
-var default_head: MechHead = preload("res://Resources/Mechs/Heads/Naked_Head.tres")
-var default_torso: MechTorso = preload("res://Resources/Mechs/Torsos/Balanced_Torso.tres")
+const default_arms: MechArm = preload("res://Resources/Mechs/Arms/Naked_Arm.tres")
+const default_head: MechHead = preload("res://Resources/Mechs/Heads/Naked_Head.tres")
+const default_torso: MechTorso = preload("res://Resources/Mechs/Torsos/Balanced_Torso.tres")
 
 var player_mech: MechSetup
 
@@ -112,11 +114,11 @@ func get_mech():
 
 
 # Bought items
-var default_items_list: Array = [
+const default_items_list: Array = [
 	"naked_head",
 	"balanced_torso",
-	"naked_arm",
-	"fist_arm",
+	"arm_naked",
+	"arm_fist",
 	"emp_head"
 ]
 

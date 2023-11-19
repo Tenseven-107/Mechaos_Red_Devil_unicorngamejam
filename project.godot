@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/UI/Building/BuildMenu.gd"
 }, {
+"base": "Control",
+"class": "BuildingTabs",
+"language": "GDScript",
+"path": "res://Scripts/UI/Building/BuildingTabs.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -131,6 +136,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BuildingMenu": "",
+"BuildingTabs": "",
 "Bullet": "",
 "BulletContainer": "",
 "BulletShooter": "",
@@ -159,7 +165,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Mechaos_Red_Devil_unicorngamejam"
-run/main_scene="res://Scenes/MainTesting.tscn"
+run/main_scene="res://Scenes/Menus/Building.tscn"
 config/icon="res://icon.png"
 
 [autoload]

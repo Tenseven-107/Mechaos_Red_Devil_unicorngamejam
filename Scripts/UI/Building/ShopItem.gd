@@ -42,13 +42,16 @@ func _pressed():
 				menu.select_part(mech.torso)
 			ITEMTYPE.LEFT_ARM:
 				TempMemory.equip_arm_left(part_resource)
-				menu.select_part(mech.left_arm)
+				menu.select_part(mech.arm_left)
 			ITEMTYPE.RIGHT_ARM:
 				TempMemory.equip_arm_right(part_resource)
-				menu.select_part(mech.right_arm)
+				menu.select_part(mech.arm_right)
 
 	elif TempMemory.can_remove_money(price):
 		popup.popup()
+
+		var popup_text: String = "Buy for $ " + str(price)
+		popup.dialog_text = popup_text
 
 		if popup.is_connected("confirmed", self, "buy") == false:
 			popup.connect("confirmed", self, "buy")

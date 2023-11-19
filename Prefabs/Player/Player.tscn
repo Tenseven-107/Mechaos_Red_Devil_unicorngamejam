@@ -152,7 +152,6 @@ script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="Body/Arms/ArmRight"]
 texture = ExtResource( 4 )
-flip_v = true
 
 [node name="SpriteTrail" type="Node2D" parent="Body/Arms/ArmRight/Sprite"]
 show_behind_parent = true
