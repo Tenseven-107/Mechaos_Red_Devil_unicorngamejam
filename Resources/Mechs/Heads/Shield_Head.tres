@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Tools/MechParts/MechHeadSetup.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Mechs/Heads/Shield-head.png" type="Texture" id=2]
-[ext_resource path="res://Prefabs/Abilities/EMP.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Abilities/Shield.tscn" type="PackedScene" id=3]
 
 [resource]
 script = ExtResource( 1 )
@@ -10,6 +10,6 @@ sprite = ExtResource( 2 )
 color = Color( 1, 1, 1, 1 )
 ability = ExtResource( 3 )
 speed = 10.0
-handling = 0.1
-hitpoints = 5
-armor = 0
+handling = 0.075
+hitpoints = 10
+armor = 5

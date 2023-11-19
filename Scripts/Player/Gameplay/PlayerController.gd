@@ -33,8 +33,10 @@ var active: bool = false
 func _ready():
 	add_to_group(group)
 	GlobalSignals.connect("start_race", self, "start")
+	GlobalSignals.connect("end_race", self, "end")
 
 func start(): active = true
+func end(): active = false
 
 
 

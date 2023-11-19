@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Tools/MechParts/MechTorsoSetup.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Mechs/Torsos/Armor-torso.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+sprite = ExtResource( 2 )
+color = Color( 1, 1, 1, 1 )
+boost = 50.0
+speed = 125.0
+handling = 1.0
+hitpoints = 10
+armor = 35

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Tools/MechParts/MechHeadSetup.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Mechs/Heads/Naked_head.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+sprite = ExtResource( 2 )
+color = Color( 1, 1, 1, 1 )
+speed = 45.0
+handling = 0.15
+hitpoints = 5
+armor = 5

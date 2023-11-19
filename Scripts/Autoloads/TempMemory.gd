@@ -5,6 +5,21 @@ extends Node
 func _ready():
 	create_new_mech()
 
+	bought_items_list = default_items_list
+
+
+
+# Storing player progress
+var level_progress: int = 0
+var levels: Array = [
+	preload("res://Scenes/Levels/Tokyo-Night.tscn")
+]
+
+func update_progress():
+	level_progress += 1
+
+func get_next_level():
+	return levels[level_progress]
 
 
 # Recording time
@@ -13,13 +28,33 @@ var total_seconds: int = 0
 var total_minutes: int = 0
 var total_hours: int = 0
 
-func add_total_time(hours: int, minutes: int, seconds: int, milliseconds: float):
-	pass
+func add_total_time(minutes: int, seconds: int, milliseconds: float):
+	total_milliseconds += milliseconds
+
+	if total_milliseconds >= 1:
+		var milliseconds_left = total_milliseconds - milliseconds
+		total_milliseconds = milliseconds_left
+
+		total_seconds += 1
+		total_seconds += seconds
+
+		if total_seconds >= 60:
+			var seconds_left = total_seconds - seconds
+			total_seconds = seconds_left
+
+			total_minutes += 1
+			total_minutes += minutes
+
+			if total_minutes >= 60:
+				var minutes_left = total_minutes - minutes
+				total_minutes = minutes_left
+
+				total_hours += 1
 
 
 
 # Storing money
-var current_money: int = 0
+var current_money: int = 200000
 
 func add_money(new_money: int):
 	current_money += new_money
@@ -35,9 +70,10 @@ func can_remove_money(money: int):
 	else: return false
 
 
+
 # Saving and building the player mech
 var default_arms: MechArm = preload("res://Resources/Mechs/Arms/Naked_Arm.tres")
-var default_head: MechHead = preload("res://Resources/Mechs/Heads/Shield_Head.tres")
+var default_head: MechHead = preload("res://Resources/Mechs/Heads/Naked_Head.tres")
 var default_torso: MechTorso = preload("res://Resources/Mechs/Torsos/Balanced_Torso.tres")
 
 var player_mech: MechSetup
@@ -53,14 +89,14 @@ func create_new_mech():
 
 	player_mech = new_mech
 
-
-func change_mech(arm_left: MechArm, arm_right: MechArm, head: MechHead, torso: MechTorso):
-	player_mech.arm_left = arm_left
-	player_mech.arm_right = arm_right
-
-	player_mech.head = head
-	player_mech.torso = torso
-
+func equip_head(part: MechHead):
+	player_mech.head = part
+func equip_torso(part: MechTorso):
+	player_mech.torso = part
+func equip_arm_left(part: MechArm):
+	player_mech.arm_left = part
+func equip_arm_right(part: MechArm):
+	player_mech.arm_right = part
 
 func set_new_color(mech_part: Resource, new_color: Color):
 	if mech_part.get("color"):
@@ -72,5 +108,29 @@ func get_mech():
 		create_new_mech()
 
 	return player_mech
+
+
+
+# Bought items
+var default_items_list: Array = [
+	"naked_head",
+	"balanced_torso",
+	"naked_arm",
+	"fist_arm",
+	"emp_head"
+]
+
+var bought_items_list: Array = []
+
+
+func add_item(item_id: String):
+	bought_items_list.append(item_id)
+
+func check_if_bought(item_id: String):
+	for item in bought_items_list:
+		if item_id == item:
+			return true
+
+	return false
 
 

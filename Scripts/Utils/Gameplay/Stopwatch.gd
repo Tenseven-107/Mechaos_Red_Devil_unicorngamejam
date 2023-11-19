@@ -16,7 +16,6 @@ var current_minutes: int = 0
 var total_milliseconds: float = 0
 var total_seconds: int = 0
 var total_minutes: int = 0
-var total_hours: int = 0
 
 var active: bool = false
 
@@ -54,9 +53,6 @@ func record(delta):
 		if total_seconds >= 60:
 			total_seconds = 0
 			total_minutes += 1
-			if total_minutes >= 60:
-				total_minutes = 0
-				total_hours += 1
 
 
 func reset():
@@ -73,7 +69,7 @@ func reset():
 
 
 func finish():
-	TempMemory.add_total_time(total_hours, total_minutes, total_seconds, total_milliseconds)
+	TempMemory.add_total_time(total_minutes, total_seconds, total_milliseconds)
 	active = false
 
 func start():

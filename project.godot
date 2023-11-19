@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "BuildingMenu",
+"language": "GDScript",
+"path": "res://Scripts/UI/Building/BuildMenu.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -114,12 +119,18 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Effects/PostProcessingLayer.gd"
 }, {
+"base": "Button",
+"class": "ShopItem",
+"language": "GDScript",
+"path": "res://Scripts/UI/Building/ShopItem.gd"
+}, {
 "base": "PathFollow2D",
 "class": "TrafficFollower",
 "language": "GDScript",
 "path": "res://Scripts/Utils/Backend/TrafficFollower.gd"
 } ]
 _global_script_class_icons={
+"BuildingMenu": "",
 "Bullet": "",
 "BulletContainer": "",
 "BulletShooter": "",
@@ -141,6 +152,7 @@ _global_script_class_icons={
 "MoneyPopup": "",
 "PlayerController": "",
 "PostProcessingLayer": "",
+"ShopItem": "",
 "TrafficFollower": ""
 }
 
