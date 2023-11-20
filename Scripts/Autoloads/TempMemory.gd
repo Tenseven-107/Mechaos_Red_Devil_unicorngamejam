@@ -21,7 +21,7 @@ var STAGELEVELS = {
 	STAGES.TOKYO: [preload("res://Scenes/Levels/Tokyo-Night.tscn"), "Tokyo, japan | 21:00"],
 	STAGES.RIO: [preload("res://Scenes/Levels/Rio.tscn"), "Rio, Brazil | 14:30"],
 	STAGES.ALASKA: [preload("res://Scenes/Levels/Alaska.tscn"), "Alaska | 16:15"],
-	STAGES.AFRICA: [preload("res://Scenes/Levels/Africa.tscn"), "African Tundra | 09:00"]
+	STAGES.AFRICA: [preload("res://Scenes/Levels/Africa.tscn"), "Africa | 09:00"]
 }
 
 func update_progress():

@@ -44,7 +44,6 @@ hue_variation_random = 1.0
 bus = "SFX"
 script = ExtResource( 8 )
 samples = [ ExtResource( 2 ) ]
-random_volume_range = 0
 random_pitch_range = 1.5
 
 [node name="Timer" type="Timer" parent="."]

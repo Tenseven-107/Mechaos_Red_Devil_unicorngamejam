@@ -16,7 +16,7 @@
 extents = Vector2( 4.5, 7.5 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 150.0
+radius = 175.0
 
 [node name="Cop-Machinegun" type="Node2D"]
 

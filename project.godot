@@ -166,7 +166,8 @@ _global_script_class_icons={
 
 config/name="Mechaos_Red_Devil_unicorngamejam"
 run/main_scene="res://Scenes/Menus/MainMenu.tscn"
-config/icon="res://icon.png"
+config/icon="res://Sprites/UI/Other/Tiny-logo.png"
+config/windows_native_icon="res://Sprites/UI/Other/Tiny-logo.ico"
 
 [autoload]
 
