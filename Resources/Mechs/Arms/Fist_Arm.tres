@@ -12,4 +12,4 @@ weapon = ExtResource( 3 )
 speed = 140.0
 handling = 0.75
 hitpoints = 25
-armor = 5
+armor = 4

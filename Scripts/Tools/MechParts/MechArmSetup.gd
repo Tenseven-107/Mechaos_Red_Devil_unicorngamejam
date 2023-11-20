@@ -12,4 +12,4 @@ export (PackedScene) var weapon: PackedScene
 export (float, -150, 150) var speed: float = 25
 export (float, -1, 1) var handling: float = 0.25
 export (int, -50, 50) var hitpoints: int = 25
-export (int, -10, 10) var armor: int = 5
+export (int, -5, 5) var armor: int = 2

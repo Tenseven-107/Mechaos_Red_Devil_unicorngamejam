@@ -11,6 +11,8 @@ signal start_race()
 signal end_race()
 signal finish_crossed()
 
+signal dead()
+
 
 # Camera fx
 signal camera_shake(new_shake, shake_time, shake_limit)

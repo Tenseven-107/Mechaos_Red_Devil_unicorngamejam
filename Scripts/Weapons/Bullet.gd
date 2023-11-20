@@ -22,7 +22,7 @@ var trail_active: bool = true
 # - Stats
 export (int) var damage: int = 25
 var team: int = 0
-export (int, 2, 100) var times_ricochet: int = 4
+export (int, 0, 100) var times_ricochet: int = 4
 export (int) var speed: int = 500
 var velocity = Vector2.ZERO
 export (float) var dropoff_time: float = 10

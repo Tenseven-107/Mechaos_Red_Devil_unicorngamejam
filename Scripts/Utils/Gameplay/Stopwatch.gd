@@ -34,6 +34,7 @@ func _process(delta):
 
 func record(delta):
 	current_milliseconds += delta
+	total_milliseconds += delta
 
 	if current_milliseconds >= 1:
 		current_milliseconds = 0

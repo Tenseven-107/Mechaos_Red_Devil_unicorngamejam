@@ -12,15 +12,29 @@ func _ready():
 
 # Storing player progress
 var level_progress: int = 0
-var levels: Array = [
-	preload("res://Scenes/Levels/Tokyo-Night.tscn")
-]
+
+enum STAGES {
+	TOKYO,
+	RIO,
+	ALASKA,
+	AFRICA
+}
+
+var STAGELEVELS = {
+	STAGES.TOKYO: [preload("res://Scenes/Levels/Tokyo-Night.tscn"), "Tokyo, japan | 21:00"],
+	STAGES.RIO: [preload("res://Scenes/Levels/Rio.tscn"), "Rio, Brazil | 14:30"],
+	STAGES.ALASKA: [preload("res://Scenes/Levels/Alaska.tscn"), "Alaska | 16:15"],
+	STAGES.AFRICA: [preload("res://Scenes/Levels/Africa.tscn"), "African Tundra | 09:00"]
+}
 
 func update_progress():
 	level_progress += 1
 
 func get_next_level():
-	return levels[level_progress]
+	return STAGELEVELS[level_progress][0]
+func get_next_level_name():
+	return STAGELEVELS[level_progress][1]
+
 
 
 # Recording time
@@ -31,20 +45,20 @@ var total_hours: int = 0
 
 func add_total_time(minutes: int, seconds: int, milliseconds: float):
 	total_milliseconds += milliseconds
+	total_seconds += seconds
+	total_minutes += minutes
 
 	if total_milliseconds >= 1:
 		var milliseconds_left = total_milliseconds - milliseconds
 		total_milliseconds = milliseconds_left
 
 		total_seconds += 1
-		total_seconds += seconds
 
 		if total_seconds >= 60:
 			var seconds_left = total_seconds - seconds
 			total_seconds = seconds_left
 
 			total_minutes += 1
-			total_minutes += minutes
 
 			if total_minutes >= 60:
 				var minutes_left = total_minutes - minutes
@@ -52,6 +66,10 @@ func add_total_time(minutes: int, seconds: int, milliseconds: float):
 
 				total_hours += 1
 
+
+func get_time_string():
+	var time_text: String = "%02d:%02d:%02d.%02d" % [total_hours, total_minutes, total_seconds, int(total_milliseconds * 100)]
+	return time_text
 
 
 # Storing money
@@ -134,5 +152,23 @@ func check_if_bought(item_id: String):
 			return true
 
 	return false
+
+
+
+# Reset
+func reset():
+	current_money = default_money
+	bought_items_list = default_items_list
+	create_new_mech()
+
+	level_progress = 0
+	total_hours = 0
+	total_minutes = 0
+	total_seconds = 0
+	total_milliseconds = 0
+
+
+
+
 
 

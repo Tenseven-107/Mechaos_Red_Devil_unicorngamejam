@@ -47,6 +47,8 @@ func _pressed():
 				TempMemory.equip_arm_right(part_resource)
 				menu.select_part(mech.arm_right)
 
+		menu.update_bars()
+
 	elif TempMemory.can_remove_money(price):
 		popup.popup()
 

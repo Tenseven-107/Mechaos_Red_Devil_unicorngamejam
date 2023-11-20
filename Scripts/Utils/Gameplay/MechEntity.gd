@@ -92,6 +92,7 @@ func die():
 		var play_effect: EffectPlayer = get_node(effect)
 		play_effect.play_effect()
 
+	GlobalSignals.emit_signal("dead")
 	get_parent().call_deferred("queue_free")
 
 

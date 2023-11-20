@@ -24,6 +24,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 shader = SubResource( 3 )
 shader_param/progress = 1.0
 shader_param/diamondPixelSize = 45.0

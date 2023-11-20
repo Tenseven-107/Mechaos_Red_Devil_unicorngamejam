@@ -20,7 +20,7 @@
 [ext_resource path="res://Prefabs/Props/Utility/ObstacleSpawner.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Prefabs/Props/CarObstacle.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Prefabs/Props/LampObstacle.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Prefabs/Environment/Shaders/ShaderEnvironments/Tokyo-Night.tres" type="Environment" id=21]
+[ext_resource path="res://Prefabs/Environment/Shaders/ShaderEnvironments/Alaska.tres" type="Environment" id=21]
 [ext_resource path="res://Prefabs/Props/Grandpa.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Prefabs/Enemies/Tank.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Prefabs/Enemies/Cop.tscn" type="PackedScene" id=24]
@@ -93,7 +93,7 @@ enviroment = ExtResource( 21 )
 [node name="PauseMenu" parent="." instance=ExtResource( 31 )]
 
 [node name="LapManager" parent="." instance=ExtResource( 12 )]
-total_laps = 3
+total_laps = 5
 
 [node name="MoneyManager" parent="." instance=ExtResource( 26 )]
 
@@ -102,7 +102,7 @@ total_laps = 3
 [node name="Stopwatch" parent="." instance=ExtResource( 15 )]
 
 [node name="MusicSetter" parent="." instance=ExtResource( 29 )]
-music_theme = 3
+music_theme = 5
 
 [node name="End" parent="." instance=ExtResource( 3 )]
 
