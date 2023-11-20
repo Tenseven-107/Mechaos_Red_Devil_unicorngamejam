@@ -268,9 +268,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Stats" type="Control" parent="Build-Menu/Control"]
-anchor_left = 0.0825
+anchor_left = 0.005
 anchor_top = 0.160714
-anchor_right = 0.335
+anchor_right = 0.2575
 anchor_bottom = 0.544643
 mouse_filter = 1
 __meta__ = {
@@ -394,23 +394,28 @@ text = "$ 200000"
 scroll_active = false
 
 [node name="Roll-out" type="Button" parent="Build-Menu/Control/MenuItems"]
-anchor_top = 0.308036
-anchor_right = 0.08
-anchor_bottom = 0.450893
+anchor_left = 0.3225
+anchor_top = 0.540179
+anchor_right = 0.4025
+anchor_bottom = 0.683036
 custom_styles/hover = SubResource( 22 )
 custom_styles/pressed = SubResource( 23 )
 custom_styles/focus = SubResource( 24 )
 custom_styles/disabled = SubResource( 25 )
 custom_styles/normal = SubResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="ColorPicker" type="ColorPicker" parent="Build-Menu/Control/MenuItems"]
 anchor_left = 0.7151
 anchor_top = 0.00446415
 anchor_right = 1.0
 anchor_bottom = 0.685
-margin_left = -194.04
-margin_right = -6.10352e-05
-margin_bottom = 259.56
+margin_left = -190.04
+margin_top = 4.0
+margin_right = 3.99994
+margin_bottom = 263.56
 rect_scale = Vector2( 0.37, 0.37 )
 rect_pivot_offset = Vector2( 308, 0 )
 edit_alpha = false

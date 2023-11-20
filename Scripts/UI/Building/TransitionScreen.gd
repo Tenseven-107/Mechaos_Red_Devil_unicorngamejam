@@ -40,8 +40,8 @@ func animation():
 	label.text = TempMemory.get_next_level_name()
 	intro_screen.show()
 
-	tween.interpolate_property(progress, "value", start_progress, progress.max_value, 2.5,
-	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+	tween.interpolate_property(progress, "value", start_progress, progress.max_value, 1.25,
+	Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	tween.start()
 
 func next_level():
