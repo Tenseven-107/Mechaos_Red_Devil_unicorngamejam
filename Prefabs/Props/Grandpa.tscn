@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Utils/Gameplay/Entity.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Obstacles/Other/Humans/Grandpa.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Utils/Gameplay/AddMoneyEffect.gd" type="Script" id=3]
-[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Environment/Effects/Blood.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Utils/EffectPlayers/AddMoneyEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/SpawnerEffect.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.5, 2 )
@@ -17,7 +18,7 @@ collision_mask = 3
 script = ExtResource( 1 )
 max_hp = 1
 team = 1
-effects_die = [ NodePath("../Effects/CameraEffect"), NodePath("../Effects/AddMoneyEffect") ]
+effects_die = [ NodePath("../Effects/SpawnerEffect"), NodePath("../Effects/AddMoneyEffect") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
 position = Vector2( -0.5, 0 )
@@ -28,10 +29,11 @@ texture = ExtResource( 2 )
 
 [node name="Effects" type="Node" parent="."]
 
-[node name="CameraEffect" parent="Effects" instance=ExtResource( 4 )]
-new_cam_shake = 250
-
 [node name="AddMoneyEffect" parent="Effects" instance=ExtResource( 5 )]
 script = ExtResource( 3 )
 money = 12
 pos_path = NodePath("../..")
+
+[node name="SpawnerEffect" parent="Effects" instance=ExtResource( 6 )]
+spawned_effect = ExtResource( 4 )
+position_object = NodePath("../..")

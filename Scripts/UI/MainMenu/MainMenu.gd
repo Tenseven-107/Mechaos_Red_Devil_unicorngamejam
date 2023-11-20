@@ -20,6 +20,8 @@ var start_scene: PackedScene = load("res://Scenes/Menus/Building.tscn")
 
 
 func _ready():
+	Engine.time_scale = 1
+
 	TempMemory.reset()
 
 	var material = transition.material
@@ -52,8 +54,8 @@ func _on_Setting_button_pressed():
 	start_menu.hide()
 	settings_menu.show()
 
-	tween.interpolate_property(logo, "rect_position", logo_pos, Vector2.UP * 400, 0.5, 
-	Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.interpolate_property(logo, "rect_position", logo_pos, Vector2.UP * 400, 1, 
+	Tween.TRANS_BOUNCE, Tween.EASE_OUT_IN)
 	tween.start()
 
 

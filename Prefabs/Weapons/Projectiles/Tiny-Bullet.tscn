@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Weapons/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Effects/Tiny-bullet.png" type="Texture" id=2]
+[ext_resource path="res://Prefabs/Environment/Effects/Bullet-hit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/SpawnerEffect.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 0.999986
@@ -19,6 +21,7 @@ damage = 5
 times_ricochet = 2
 speed = 1200
 dropoff_time = 7.5
+effects_on_impact = [ NodePath("SpawnerEffect") ]
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -34,6 +37,10 @@ default_color = Color( 1, 1, 1, 1 )
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 texture = ExtResource( 2 )
+
+[node name="SpawnerEffect" parent="." instance=ExtResource( 4 )]
+spawned_effect = ExtResource( 3 )
+position_object = NodePath("..")
 
 [node name="Dropoff_timer" type="Timer" parent="."]
 one_shot = true

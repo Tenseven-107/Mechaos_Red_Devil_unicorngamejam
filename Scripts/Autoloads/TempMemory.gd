@@ -5,9 +5,6 @@ extends Node
 func _ready():
 	create_new_mech()
 
-	current_money = default_money
-	bought_items_list = default_items_list
-
 
 
 # Storing player progress
@@ -158,7 +155,10 @@ func check_if_bought(item_id: String):
 # Reset
 func reset():
 	current_money = default_money
-	bought_items_list = default_items_list
+
+	bought_items_list.clear()
+	bought_items_list.append_array(default_items_list)
+
 	create_new_mech()
 
 	level_progress = 0

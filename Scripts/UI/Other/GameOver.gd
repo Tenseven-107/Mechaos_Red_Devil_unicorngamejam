@@ -20,6 +20,7 @@ func game_over():
 	game_over_ui.show()
 
 	AudioServer.set_bus_effect_enabled(0,0, true)
+	AudioServer.set_bus_effect_enabled(0,1, true)
 	pitch = AudioServer.get_bus_effect(0, 0)
 	tween.interpolate_property(pitch, "pitch_scale", 1.0, 0.1, 2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
@@ -28,12 +29,14 @@ func game_over():
 
 func _on_Retry_button_pressed():
 	AudioServer.set_bus_effect_enabled(0,0, false)
+	AudioServer.set_bus_effect_enabled(0,1, false)
 
 	get_tree().reload_current_scene()
 
 
 func _on_Quit_button_pressed():
 	AudioServer.set_bus_effect_enabled(0,0, false)
+	AudioServer.set_bus_effect_enabled(0,1, false)
 
 	get_tree().change_scene_to(main_menu)
 

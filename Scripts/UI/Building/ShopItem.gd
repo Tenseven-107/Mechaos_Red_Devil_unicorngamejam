@@ -7,6 +7,7 @@ onready var menu: BuildingMenu = get_node(menu_path)
 
 export (NodePath) var popup_path: NodePath
 onready var popup: ConfirmationDialog = get_node(popup_path)
+onready var cancel: Button = popup.get_child(2).get_child(3)
 
 export (Resource) var part_resource: Resource
 
@@ -58,6 +59,9 @@ func _pressed():
 		if popup.is_connected("confirmed", self, "buy") == false:
 			popup.connect("confirmed", self, "buy")
 
+		if cancel.is_connected("pressed", self, "cancel") == false:
+			cancel.connect("pressed", self, "cancel")
+
 
 func check_if_available():
 	modulate = Color.red
@@ -78,7 +82,9 @@ func buy():
 	menu.update_ui()
 
 	popup.disconnect("confirmed", self, "buy")
+	cancel.disconnect("pressed", self, "cancel")
 
-
-
+func cancel():
+	popup.disconnect("confirmed", self, "buy")
+	cancel.disconnect("pressed", self, "cancel")
 

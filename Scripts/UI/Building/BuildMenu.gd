@@ -23,6 +23,8 @@ var selected_part: Resource = null
 
 
 func _ready():
+	Engine.time_scale = 1
+
 	set_bars()
 	update_bars()
 	update_ui()

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Effects/ParticleSet.gd" type="Script" id=1]
+[ext_resource path="res://SFX/Player/Dive.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Effects/EMP-projectile.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/UI/Hud/HP_bar.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/ScaleEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=8]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.563636 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Explosion" type="Node2D"]
+z_index = 5
+script = ExtResource( 1 )
+sfx_path = NodePath("SFX")
+particle_paths = [ NodePath("Energy") ]
+
+[node name="ScaleEffect" parent="." instance=ExtResource( 6 )]
+on_start = true
+object_path = NodePath("../Dodge")
+ease_type = 3
+transition_type = 9
+
+[node name="Energy" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 3 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 1.0
+damping = 100.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 0.1
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 1 )
+
+[node name="Dodge" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
+script = ExtResource( 8 )
+samples = [ ExtResource( 2 ) ]
+random_volume_range = 0
+random_pitch_range = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

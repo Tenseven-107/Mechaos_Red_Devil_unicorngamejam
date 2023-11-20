@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Effects/ParticleSet.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Effects/Shard-1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Effects/Shard-2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Effects/Fireball.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Effects/Smoke-puff.png" type="Texture" id=5]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/ScaleEffect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SFX/Props/Explosion_edit.wav" type="AudioStream" id=7]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=8]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.563636 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.396648, 0.715084, 0.905028 )
+colors = PoolColorArray( 0.996078, 0.905882, 0.380392, 1, 0.996078, 0.682353, 0.203922, 1, 0.968627, 0.462745, 0.133333, 1, 0.0941176, 0.0784314, 0.145098, 1 )
+
+[node name="Explosion" type="Node2D"]
+z_index = 5
+script = ExtResource( 1 )
+sfx_path = NodePath("SFX")
+particle_paths = [ NodePath("Shards"), NodePath("Shards2"), NodePath("Flames") ]
+
+[node name="ScaleEffect" parent="." instance=ExtResource( 6 )]
+on_start = true
+object_path = NodePath("../Fireball")
+duration = 0.5
+ease_type = 3
+transition_type = 9
+
+[node name="CameraEffect" parent="." instance=ExtResource( 9 )]
+on_start = true
+new_cam_shake = 500
+cam_shake_limit = 1500
+hitstop = true
+hitstop_time = 0.025
+
+[node name="Shards" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 2 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 1.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 2.5
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 1 )
+hue_variation = 0.15
+hue_variation_random = 1.0
+
+[node name="Shards2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 3 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 1.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 2.5
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 1 )
+hue_variation = 0.15
+hue_variation_random = 1.0
+
+[node name="Flames" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 5 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.22
+angle = 720.0
+angle_random = 1.0
+scale_amount = 2.5
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+hue_variation = 0.04
+hue_variation_random = 1.0
+
+[node name="Fireball" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = -5.0
+bus = "SFX"
+script = ExtResource( 8 )
+samples = [ ExtResource( 7 ) ]
+random_volume_range = 0
+random_pitch_range = 1.5
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

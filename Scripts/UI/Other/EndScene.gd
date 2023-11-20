@@ -8,6 +8,8 @@ var main_menu: PackedScene = load("res://Scenes/Menus/MainMenu.tscn")
 
 
 func _ready():
+	Engine.time_scale = 1
+
 	var extra_txt: String = ("[color=yellow] Total time: " + TempMemory.get_time_string() 
 	+ "[color=white] ,[color=red] Money: " + str(TempMemory.current_money))
 	text.bbcode_text +=  extra_txt

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Effects/ParticleSet.gd" type="Script" id=1]
+[ext_resource path="res://SFX/Props/Scream_2.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Effects/Blood.png" type="Texture" id=3]
+[ext_resource path="res://SFX/Props/Scream_3.wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/Props/Scream_1.wav" type="AudioStream" id=5]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=8]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Blood" type="Node2D"]
+z_index = -1
+script = ExtResource( 1 )
+sfx_path = NodePath("SFX")
+particle_paths = [ NodePath("BloodSplats") ]
+stay_time = 2.0
+
+[node name="CameraEffect" parent="." instance=ExtResource( 9 )]
+on_start = true
+new_cam_shake = 500
+cam_shake_limit = 2000
+cam_shake_time = 0.07
+hitstop = true
+hitstop_time = 0.02
+
+[node name="BloodSplats" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 6
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 3 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 38.99
+initial_velocity_random = 1.0
+damping = 100.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 0.1
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 2 )
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
+script = ExtResource( 8 )
+samples = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ) ]
+random_strategy = 1
+random_volume_range = 0
+random_pitch_range = 1.5
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

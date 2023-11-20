@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Sprites/Obstacles/Other/Vehicles/Car-5.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Obstacles/Other/Vehicles/Car-3.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Scripts/Effects/RandomSprite.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Utils/Backend/TrafficFollower.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Utils/Gameplay/Entity.gd" type="Script" id=9]
-[ext_resource path="res://Prefabs/Utils/EffectPlayers/CameraEffect.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sprites/Obstacles/Other/Vehicles/Police-car.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/Utils/Gameplay/AddMoneyEffect.gd" type="Script" id=12]
 [ext_resource path="res://Prefabs/Utils/EffectPlayers/AddMoneyEffect.tscn" type="PackedScene" id=13]
@@ -19,6 +18,8 @@
 [ext_resource path="res://Sprites/Obstacles/Other/Vehicles/Taxi.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/Obstacles/Other/Vehicles/Cabrio-2.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/Obstacles/Other/Vehicles/Truck-2.png" type="Texture" id=19]
+[ext_resource path="res://Prefabs/Environment/Effects/Explosion.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Prefabs/Utils/EffectPlayers/SpawnerEffect.tscn" type="PackedScene" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11, 4 )
@@ -32,7 +33,7 @@ collision_mask = 3
 script = ExtResource( 9 )
 max_hp = 5
 team = 1
-effects_die = [ NodePath("../Effects/CameraEffect"), NodePath("../Effects/AddMoneyEffect") ]
+effects_die = [ NodePath("../Effects/AddMoneyEffect"), NodePath("../Effects/SpawnerEffect") ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entity"]
 shape = SubResource( 1 )
@@ -45,10 +46,11 @@ sprites = [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3
 
 [node name="Effects" type="Node" parent="."]
 
-[node name="CameraEffect" parent="Effects" instance=ExtResource( 10 )]
-new_cam_shake = 250
-
 [node name="AddMoneyEffect" parent="Effects" instance=ExtResource( 13 )]
 script = ExtResource( 12 )
 money = 50
 pos_path = NodePath("../..")
+
+[node name="SpawnerEffect" parent="Effects" instance=ExtResource( 21 )]
+spawned_effect = ExtResource( 20 )
+position_object = NodePath("../..")
